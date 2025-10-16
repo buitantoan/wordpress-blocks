@@ -1,0 +1,9 @@
+{
+  "apiVersion": 2,
+  "name": "wordpress-blocks/my-block",
+  "title": "My Block",
+  "category": "wpb-blocks",
+  "icon": "smiley",
+  "description": "A custom Gutenberg block.",
+  "editorScript": "file:./index.js"
+}

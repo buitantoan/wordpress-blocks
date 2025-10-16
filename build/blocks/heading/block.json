@@ -1,0 +1,9 @@
+{
+  "apiVersion": 2,
+  "name": "wordpress-blocks/heading",
+  "title": "Heading",
+  "category": "wpb-blocks",
+  "icon": "smiley",
+  "description": "Your Heading",
+  "editorScript": "file:./index.js"
+}
