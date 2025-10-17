@@ -37,7 +37,9 @@ if ( ! class_exists( 'WPB_Loader' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-            add_action( 'init', array( $this, 'init_actions' ) );
+            add_action( 'init', array( $this, 'wpb_init_actions' ) );
+
+			$this->wpb_loader();
         }
 
         /**
@@ -47,14 +49,16 @@ if ( ! class_exists( 'WPB_Loader' ) ) {
 		 *
 		 * @return void
 		 */
-		public function init_actions() {
-            add_action( 'enqueue_block_editor_assets', array( $this, 'wpb_enqueue_editor_assets' ) );
-
+		public function wpb_init_actions() {
+            add_action('enqueue_block_editor_assets', array( $this, 'wpb_enqueue_editor_assets' ) );
 			add_filter('block_categories_all', array( $this, 'wpb_register_new_block_category' ), 99999999, 2 );
 
             $this->wpb_register_block_type();
         }
 
+		/**
+         * register block type.
+         */
         public function wpb_register_block_type() {
             $blocks_dir = WPB_BUILD_PATH . '/blocks';
             foreach ( glob( $blocks_dir . '/*', GLOB_ONLYDIR ) as $block_folder ) {
@@ -62,6 +66,9 @@ if ( ! class_exists( 'WPB_Loader' ) ) {
             }
         }
 
+		/**
+         * Add block category.
+         */
 		public function wpb_register_new_block_category($block_categories, $editor_context){
 			if (!empty($editor_context->post)) {
 				array_unshift(
@@ -82,12 +89,12 @@ if ( ! class_exists( 'WPB_Loader' ) ) {
         public function wpb_enqueue_editor_assets() {
 			global $pagenow;
 
-			$script_dep_path = WPB_DIR_PATH . 'build/blocks.min.asset.php';
+			$script_dep_path = WPB_DIR_PATH . 'build/blocks.asset.php';
 			$script_info     = file_exists( $script_dep_path )
 				? include $script_dep_path
 				: array(
 					'dependencies' => array(),
-					'version'      => UAGB_VER,
+					'version'      => WPB_VER,
 				);
 
 			$script_dep = array_merge( $script_info['dependencies'], array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-api-fetch' ) );
@@ -97,16 +104,24 @@ if ( ! class_exists( 'WPB_Loader' ) ) {
 			}
 			
 			// Scripts.
-			$blocks_script = file_exists( UAGB_DIR . 'build/blocks.min.js' ) ? 'blocks.min.js' : 'blocks.js';
+			$blocks_script = file_exists( WPB_DIR_PATH . 'build/blocks.min.js' ) ? 'blocks.min.js' : 'blocks.js';
 			wp_enqueue_script(
 				'wpb-block-editor-js', // Handle.
 				WPB_URI . 'build/' . $blocks_script,
 				$script_dep, // Dependencies, defined above.
-				$script_info['version'], // UAGB_VER.
+				$script_info['version'], // WPB_VER.
 				true // Enqueue the script in the footer.
 			);
 
         }
+
+		/**
+         * Include Files.
+         */
+        public function wpb_loader() {
+			require_once WPB_DIR_PATH . 'admin/class-admin.php';
+
+		}
 
     }
 

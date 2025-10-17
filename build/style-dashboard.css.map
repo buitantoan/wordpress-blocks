@@ -1,0 +1,1 @@
+{"version":3,"file":"./style-dashboard.css","mappings":";;;AAAA;EACI;AACJ,C","sources":["webpack://wordpress-blocks/./src/admin/style.scss"],"sourcesContent":["#wpbody-content>.notice:not(.uag-notice), #wpbody-content>.error {\n    display: none !important;\n}"],"names":[],"sourceRoot":""}

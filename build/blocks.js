@@ -49,8 +49,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('wordpress-blocks/heading', {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('wpb-block/heading', {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading', 'wpb-blocks'),
+  attributes: {
+    block_id: {
+      type: 'string'
+    }
+  },
+  providesContext: {
+    'wpb-block/heading': 'block_id'
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
@@ -74,7 +82,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function save() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(),
     children: "Your Heading"
   });

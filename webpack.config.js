@@ -6,6 +6,7 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		blocks: path.resolve( __dirname, 'src/blocks.js' ),
+		dashboard: path.resolve( __dirname, 'src/dashboard.js' ),
 	},
 	output: {
 		path: path.resolve(__dirname, 'build'),

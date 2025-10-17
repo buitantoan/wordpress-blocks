@@ -1,6 +1,6 @@
 {
   "apiVersion": 2,
-  "name": "wordpress-blocks/heading",
+  "name": "wpb-block/heading",
   "title": "Heading",
   "category": "wpb-blocks",
   "icon": "smiley",

@@ -1,9 +1,10 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
-export default function save() {
+export default function save( ) {
+    
     return (
-        <p { ...useBlockProps.save() }>
+        <div { ...useBlockProps.save() }>
             Your Heading
-        </p>
+        </div>
     );
 }

@@ -13,5 +13,10 @@
   "description": "",
   "devDependencies": {
     "@wordpress/scripts": "^30.25.0"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
+    "react-router-dom": "^7.9.4"
   }
 }
